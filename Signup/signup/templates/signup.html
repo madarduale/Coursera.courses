@@ -1,0 +1,51 @@
+
+{% load crispy_forms_tags %}
+<h2>Sign up</h2>
+<form method="post">
+  {% csrf_token %}
+  {% for field in form %}
+    <p>
+      {{ field.label_tag }}<br>
+      {{ field}}
+
+      <!-- {% if field.help_text %}
+        <small style="color: grey">{{ field.help_text }}</small>
+      {% endif %} -->
+      {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </p>
+  {% endfor %}
+  <button type="submit">Sign up</button>
+  <div class="mt-4">
+    <div class="d-flex justify-content-center links">
+        Don't have an account? <a href="{% url 'login' %}" class="ml-2">Login </a>
+    </div>
+
+  </div>
+</form> 
+<!-- <form method="post">
+  {% csrf_token %}
+  <!-- {% for field in form %}
+    <p>
+      <!-- {{ field.label_tag }}<br>
+      {{ field}} 
+      {{form.username.label}}
+      {{form.username}}
+      {{form.first_name}}
+      {{form.last_name}}
+      {{form.email}}
+      {{form.password1}}
+      {{form.password2}}
+      <!-- {% if field.help_text %}
+        <small style="color: grey">{{ field.help_text }}</small>
+      {% endif %} 
+      {% for error in form.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </p>
+  <!-- {% endfor %} 
+ <button type="submit">Sign up</button>
+</form> 
+
+ -->
